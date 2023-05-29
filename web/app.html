@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Command Line Arguments</title>
+</head>
+
+<body>
+  <h1>Command Line Arguments</h1>
+  <p>Enter your command line arguments and click Submit to see the output:</p>
+  <form>
+    <input type="text" id="args" name="args">
+    <button type="button" onclick="showOutput()">Submit</button>
+  </form>
+  <p id="output"></p>
+  <script>
+    function showOutput() {
+      var inputs = document.getElementById("args").value;
+      var outputs = '"';
+      for (i = 0; i < inputs.length; i++) {
+        if (inputs[i] == ' ') {
+          outputs += ('", "');
+        }
+        else {
+          outputs += inputs[i];
+        }
+      }
+      outputs += '"';
+      document.getElementById("output").innerHTML = outputs;
+    }
+  </script>
+</body>
+
+</html>
