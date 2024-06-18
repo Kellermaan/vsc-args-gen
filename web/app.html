@@ -1,33 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Command Line Arguments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Command Line Arguments</h1>
-  <p>Enter your command line arguments and click Submit to see the output:</p>
-  <form>
-    <input type="text" id="args" name="args">
-    <button type="button" onclick="showOutput()">Submit</button>
-  </form>
-  <p id="output"></p>
+  <div class="container">
+    <h1>Command Line Arguments</h1>
+    <p>Enter your command line arguments and click Submit to see the output:</p>
+    <form>
+      <input type="text" id="args" name="args" placeholder="Enter arguments here">
+      <button type="button" onclick="showOutput()">Submit</button>
+    </form>
+    <p id="output"></p>
+  </div>
   <script>
     function showOutput() {
-      var inputs = document.getElementById("args").value;
-      var outputs = '"';
-      for (i = 0; i < inputs.length; i++) {
-        if (inputs[i] == ' ') {
-          outputs += ('", "');
-        }
-        else {
-          outputs += inputs[i];
-        }
+      const inputs = document.getElementById('args').value.trim();
+      if (inputs === "") {
+        document.getElementById('output').innerHTML = "No arguments provided.";
+        return;
       }
-      outputs += '"';
-      document.getElementById("output").innerHTML = outputs;
+      const argsArray = inputs.split(' ').map(arg => `"${arg}"`);
+      const outputs = argsArray.join(', ');
+      document.getElementById('output').innerHTML = outputs;
     }
   </script>
 </body>
